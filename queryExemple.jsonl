@@ -1,0 +1,189 @@
+[
+  {
+    "product_name": "Clarify 2% BHA Liquid Exfoliant",
+    "product_type": "Aqueous Solution",
+    "target_ph": 3.6,
+    "ingredients": [
+      {
+        "inci_name": "Aqua",
+        "wt_pct": 85.5,
+        "phase": "A"
+      },
+      {
+        "inci_name": "Propanediol",
+        "wt_pct": 8.0,
+        "phase": "A"
+      },
+      {
+        "inci_name": "Polysorbate 20",
+        "wt_pct": 2.0,
+        "phase": "B"
+      },
+      {
+        "inci_name": "Salicylic Acid",
+        "wt_pct": 2.0,
+        "phase": "B"
+      },
+      {
+        "inci_name": "Sodium Hydroxide (10% sol.)",
+        "wt_pct": 1.5,
+        "phase": "C"
+      },
+      {
+        "inci_name": "Phenoxyethanol",
+        "wt_pct": 0.8,
+        "phase": "C"
+      },
+      {
+        "inci_name": "Ethylhexylglycerin",
+        "wt_pct": 0.2,
+        "phase": "C"
+      }
+    ],
+    "process_conditions": {
+      "mixing_order": [
+        "Add Aqua and Propanediol to the main vessel (Phase A) and begin propeller mixing.",
+        "In a side vessel, dissolve Salicylic Acid into Polysorbate 20 (Phase B) using gentle heat if necessary.",
+        "Add Phase B to Phase A under continuous stirring until completely clear.",
+        "Add preservatives (Phase C).",
+        "Slowly add Sodium Hydroxide solution to adjust pH to 3.6.",
+        "Mix until uniform and completely transparent."
+      ],
+      "mixing_speed_rpm": 500,
+      "processing_temperature_c": 25,
+      "homogenization": false
+    },
+    "packaging": {
+      "format": "bottle",
+      "material": "PET",
+      "headspace_pct": 5
+    },
+    "storage_conditions": [
+      {
+        "label": "Ambient",
+        "temperature_c": 25,
+        "duration_weeks": 12,
+        "light_exposure": "indirect"
+      },
+      {
+        "label": "Accelerated",
+        "temperature_c": 40,
+        "duration_weeks": 8,
+        "light_exposure": "none"
+      },
+      {
+        "label": "Cold Storage",
+        "temperature_c": 4,
+        "duration_weeks": 4,
+        "light_exposure": "none"
+      }
+    ],
+    "assessment_goal": "Evaluate the chemical stability of the BHA over time, monitor for any crystallization or precipitation of salicylic acid at cold temperatures, and track pH drift to ensure the formula remains in the effective exfoliating range."
+  },
+  {
+    "product_name": "Gentle Purify Foaming Cleanser",
+    "product_type": "Surfactant Gel",
+    "target_ph": 5.5,
+    "ingredients": [
+      {
+        "inci_name": "Aqua",
+        "wt_pct": 60.4,
+        "phase": "A"
+      },
+      {
+        "inci_name": "Disodium EDTA",
+        "wt_pct": 0.1,
+        "phase": "A"
+      },
+      {
+        "inci_name": "Glycerin",
+        "wt_pct": 4.0,
+        "phase": "A"
+      },
+      {
+        "inci_name": "Sodium Laureth Sulfate (70%)",
+        "wt_pct": 15.0,
+        "phase": "B"
+      },
+      {
+        "inci_name": "Cocamidopropyl Betaine (30%)",
+        "wt_pct": 10.0,
+        "phase": "B"
+      },
+      {
+        "inci_name": "Decyl Glucoside",
+        "wt_pct": 5.0,
+        "phase": "B"
+      },
+      {
+        "inci_name": "PEG-150 Distearate",
+        "wt_pct": 2.0,
+        "phase": "C"
+      },
+      {
+        "inci_name": "Sodium Benzoate",
+        "wt_pct": 0.5,
+        "phase": "D"
+      },
+      {
+        "inci_name": "Potassium Sorbate",
+        "wt_pct": 0.3,
+        "phase": "D"
+      },
+      {
+        "inci_name": "Citric Acid (10% sol.)",
+        "wt_pct": 1.5,
+        "phase": "D"
+      },
+      {
+        "inci_name": "Fragrance",
+        "wt_pct": 0.2,
+        "phase": "D"
+      },
+      {
+        "inci_name": "Sodium Chloride",
+        "wt_pct": 1.0,
+        "phase": "E"
+      }
+    ],
+    "process_conditions": {
+      "mixing_order": [
+        "Add Aqua to the main vessel, heat to 65°C. Add Disodium EDTA and Glycerin (Phase A) and mix until dissolved.",
+        "Add Phase B surfactants one by one, mixing slowly to avoid aeration.",
+        "Add PEG-150 Distearate (Phase C) and maintain heat at 65°C until fully melted and incorporated.",
+        "Begin cooling the batch to 40°C.",
+        "Add Phase D ingredients, adjusting pH to 5.5 with Citric Acid.",
+        "Slowly add Sodium Chloride (Phase E) to build final viscosity."
+      ],
+      "mixing_speed_rpm": 250,
+      "processing_temperature_c": 65,
+      "homogenization": false
+    },
+    "packaging": {
+      "format": "pump bottle",
+      "material": "PETG",
+      "headspace_pct": 8
+    },
+    "storage_conditions": [
+      {
+        "label": "Ambient",
+        "temperature_c": 25,
+        "duration_weeks": 12,
+        "light_exposure": "indirect"
+      },
+      {
+        "label": "Accelerated",
+        "temperature_c": 45,
+        "duration_weeks": 12,
+        "light_exposure": "none"
+      },
+      {
+        "label": "Freeze-Thaw Cycling",
+        "temperature_c": -10,
+        "duration_weeks": 4,
+        "light_exposure": "none"
+      }
+    ],
+    "assessment_goal": "Assess viscosity stability across different temperature extremes, monitor for surfactant clouding or phase separation, and ensure the preservative system maintains efficacy without destabilizing the gel network."
+  }
+]

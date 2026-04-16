@@ -31,10 +31,17 @@ SEMANTIC_SCHOLAR_RATE_LIMIT_SECONDS = float(os.getenv("SEMANTIC_SCHOLAR_RATE_LIM
 # PubChem
 PUBCHEM_TIMEOUT_SECONDS = int(os.getenv("PUBCHEM_TIMEOUT_SECONDS", "20"))
 
+# Firecrawl
+FIRECRAWL_URL = os.getenv("FIRECRAWL_URL") or os.getenv("firecrawl_url", "https://api.firecrawl.dev/v2/agent")
+FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY") or os.getenv("firecrawl_api_key")
+FIRECRAWL_MODEL = os.getenv("FIRECRAWL_MODEL", "spark-1-mini")
+FIRECRAWL_TIMEOUT_SECONDS = int(os.getenv("FIRECRAWL_TIMEOUT_SECONDS", "45"))
+
 # RAG retrieval quality gates (agent/runtime tunable without code edits)
 RAG_MIN_STRONG_EVIDENCE = int(os.getenv("RAG_MIN_STRONG_EVIDENCE", "2"))
 RAG_MIN_ACCEPTABLE_SCORE = float(os.getenv("RAG_MIN_ACCEPTABLE_SCORE", "0.18"))
 RAG_MIN_ACCEPTABLE_LEXICAL = float(os.getenv("RAG_MIN_ACCEPTABLE_LEXICAL", "0.08"))
+ASSESSMENT_ENFORCE_TOOL_COVERAGE_RETRY = os.getenv("ASSESSMENT_ENFORCE_TOOL_COVERAGE_RETRY", "false").lower() == "true"
 
 PDF_PATH = "data/pdf"
 VECTOR_DB_PATH = "rag/vectorstore"

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FormulaSense icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B6A7F"/>
+      <stop offset="100%" stop-color="#14919B"/>
+    </linearGradient>
+    <linearGradient id="flask" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D9FCFF"/>
+      <stop offset="100%" stop-color="#A7F3FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)"/>
+  <path d="M28 14h8v8l8 14a11 11 0 0 1-9.5 16H29.5A11 11 0 0 1 20 36l8-14v-8z" fill="url(#flask)"/>
+  <path d="M25 39c2 2 4.4 3 7 3s5-1 7-3" stroke="#0A5D67" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="25" cy="30" r="1.8" fill="#0A5D67"/>
+  <circle cx="32" cy="34" r="1.4" fill="#0A5D67"/>
+  <circle cx="39" cy="30" r="1.8" fill="#0A5D67"/>
+</svg>

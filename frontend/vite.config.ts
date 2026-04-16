@@ -3,23 +3,22 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
+process.env.BROWSERSLIST_IGNORE_OLD_DATA = "1";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 5173,
+    port: 8082,
+    hmr: {
+      overlay: false,
+    },
     proxy: {
       "/api": {
         target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
     },
-    hmr: {
-      overlay: false,
-    },
-  },
-  build: {
-    chunkSizeWarningLimit: 2000,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

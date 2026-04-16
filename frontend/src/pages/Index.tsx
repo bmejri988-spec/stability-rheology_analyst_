@@ -1,55 +1,68 @@
-import { useState, useCallback } from "react";
-import { TopBar } from "@/components/TopBar";
-import { FormulaBuilder } from "@/components/FormulaBuilder";
-import { ResultsPanel } from "@/components/ResultsPanel";
-import { assessFormula } from "@/lib/api";
-import type { FormulaPayload, AssessmentResponse } from "@/types/formula";
+import FormulaEditor from "@/components/FormulaEditor";
+import AssessmentResults from "@/components/AssessmentResults";
+import ChatLauncher from "@/components/ChatLauncher";
+import TopBar from "@/components/TopBar";
+import { useAssessment } from "@/hooks/useAssessment";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle, Pencil, RefreshCw } from "lucide-react";
 
-export default function Index() {
-  const [result, setResult] = useState<AssessmentResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [timestamp, setTimestamp] = useState<string | null>(null);
-  const [lastPayload, setLastPayload] = useState<FormulaPayload | null>(null);
-
-  const handleSubmit = useCallback(async (payload: FormulaPayload) => {
-    setLoading(true);
-    setError(null);
-    setResult(null);
-    setLastPayload(payload);
-    setTimestamp(new Date().toISOString());
-    try {
-      const res = await assessFormula(payload);
-      setResult(res);
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Unknown error");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const handleRetry = () => {
-    if (lastPayload) handleSubmit(lastPayload);
-  };
+const Index = () => {
+  const { status, result, error, submit, retry, reset, lastPayload } =
+    useAssessment();
 
   return (
-    <div className="flex flex-col h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <TopBar />
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        <div className="lg:w-1/2 xl:w-[45%] border-r overflow-hidden flex flex-col">
-          <FormulaBuilder onSubmit={handleSubmit} loading={loading} />
-        </div>
-        <div className="lg:w-1/2 xl:w-[55%] overflow-hidden flex flex-col">
-          <ResultsPanel
-            result={result}
-            error={error}
-            loading={loading}
-            onRetry={handleRetry}
-            requestTimestamp={timestamp}
-            rawPayload={lastPayload}
-          />
-        </div>
-      </div>
+
+      <main className="container max-w-5xl px-4 py-6 space-y-6">
+        {(status === "idle" || status === "error") && (
+          <FormulaEditor onSubmit={submit} isLoading={status === "loading"} />
+        )}
+
+        {/* Error state */}
+        {status === "error" && (
+          <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-4 flex items-start gap-3 animate-fade-in">
+            <AlertTriangle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-foreground">
+                Assessment failed
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">{error}</p>
+            </div>
+            <Button variant="outline" size="sm" onClick={retry}>
+              <RefreshCw className="h-3.5 w-3.5 mr-1" /> Retry
+            </Button>
+          </div>
+        )}
+
+        {/* Loading state */}
+        {status === "loading" && (
+          <div className="bg-card rounded-lg border border-border animate-fade-in">
+            <div className="flex min-h-[420px] flex-col items-center justify-center px-6 py-12 text-center">
+              <div className="h-9 w-9 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+              <p className="mt-4 text-sm text-muted-foreground">
+                Running assessment...
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Results */}
+        {status === "success" && result && (
+          <div className="space-y-3">
+            <div className="flex justify-end">
+              <Button variant="outline" size="sm" onClick={reset}>
+                <Pencil className="h-3.5 w-3.5 mr-1" /> Back to edit formula
+              </Button>
+            </div>
+            <AssessmentResults result={result} formula={lastPayload} />
+          </div>
+        )}
+      </main>
+
+      <ChatLauncher />
     </div>
   );
-}
+};
+
+export default Index;
