@@ -12,6 +12,7 @@ import type {
 import { api } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import ReportAssistantCard from "@/components/ReportAssistantCard";
 import {
   Copy,
   Download,
@@ -219,7 +220,10 @@ export default function AssessmentResults({ result, formula }: Props) {
 
         {report ? (
           viewMode === "main" ? (
-            <MainReportView report={report} />
+            <div className="space-y-4">
+              <MainReportView report={report} />
+              <ReportAssistantCard result={result} formula={formula} />
+            </div>
           ) : (
             <SafetyReportView
               report={report}

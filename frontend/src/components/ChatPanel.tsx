@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect, KeyboardEvent } from "react";
+import { useState, useCallback, useRef, useEffect, KeyboardEvent, Dispatch, SetStateAction } from "react";
 import type { ChatMessage } from "@/types/api";
 import { api } from "@/lib/api";
 import { X, Send, Loader2 } from "lucide-react";
@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 
 interface Props {
+  messages: ChatMessage[];
+  setMessages: Dispatch<SetStateAction<ChatMessage[]>>;
   onClose: () => void;
   onNewReply: () => void;
 }
 
-export default function ChatPanel({ onClose, onNewReply }: Props) {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+export default function ChatPanel({ messages, setMessages, onClose, onNewReply }: Props) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);

@@ -61,13 +61,20 @@ def create_agent2() -> AgentExecutor:
     return AgentExecutor(
         agent=tool_agent,
         tools=TOOLS,
-        verbose=True,
+        verbose=False,
         return_intermediate_steps=True,
     )
 
 
-def build_agent2_messages(user_message: str, history: list[dict[str, Any]] | None = None) -> list[BaseMessage]:
+def build_agent2_messages(
+    user_message: str,
+    history: list[dict[str, Any]] | None = None,
+    context: str | None = None,
+) -> list[BaseMessage]:
     messages: list[BaseMessage] = [SystemMessage(content=SYSTEM_PROMPT)]
+
+    if context:
+        messages.append(SystemMessage(content=f"Context for this conversation:\n{context.strip()}"))
 
     for item in history or []:
         if not isinstance(item, dict):
@@ -86,8 +93,19 @@ def build_agent2_messages(user_message: str, history: list[dict[str, Any]] | Non
     return messages
 
 
-def build_agent2_input(user_message: str, history: list[dict[str, Any]] | None = None) -> str:
-    lines = ["Conversation context:"]
+def build_agent2_input(
+    user_message: str,
+    history: list[dict[str, Any]] | None = None,
+    context: str | None = None,
+) -> str:
+    lines = []
+
+    if context:
+        lines.append("Context for this conversation:")
+        lines.append(context.strip())
+        lines.append("")
+
+    lines.append("Conversation context:")
 
     for item in history or []:
         if not isinstance(item, dict):
@@ -106,8 +124,12 @@ def build_agent2_input(user_message: str, history: list[dict[str, Any]] | None =
     return "\n".join(lines)
 
 
-def run_agent2_fallback(user_message: str, history: list[dict[str, Any]] | None = None) -> str:
+def run_agent2_fallback(
+    user_message: str,
+    history: list[dict[str, Any]] | None = None,
+    context: str | None = None,
+) -> str:
     """Generate a concise reply without tools when tool execution fails."""
     llm = _agent2_llm()
-    response = llm.invoke(build_agent2_messages(user_message, history))
+    response = llm.invoke(build_agent2_messages(user_message, history, context))
     return str(getattr(response, "content", "")).strip()

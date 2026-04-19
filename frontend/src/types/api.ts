@@ -198,6 +198,7 @@ export interface ChatMessage {
 export interface ChatRequest {
   message: string;
   history: ChatMessage[];
+  context?: string;
 }
 
 export interface ChatResponse {

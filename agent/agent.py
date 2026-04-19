@@ -51,7 +51,7 @@ def create_agent():
     executor = AgentExecutor(
         agent=tool_calling_agent,
         tools=TOOLS,
-        verbose=True,
+        verbose=False,
         return_intermediate_steps=True,
     )
     return executor, parser

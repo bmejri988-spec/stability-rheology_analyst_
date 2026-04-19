@@ -1,0 +1,36 @@
+{
+  "report_text": "Overall medium stability risk: the cleanser should perform well at ambient conditions, with manageable viscosity drift under heat and freeze–thaw if salt and process controls are optimized.",
+  "structured_report": {
+    "executive_summary": {
+      "brief_stability_conclusion": "The surfactant gel is expected to be physically stable with robust shear-thinning viscosity, but shows moderate risk of viscosity drift and clouding under thermal and freeze–thaw stress.",
+      "key_risks_overview": [
+        "Salt-thickened surfactant system sensitive to NaCl concentration and temperature",
+        "PEG-150 Distearate structuring may weaken at elevated temperature (45°C)",
+        "Potential cloud point effects from nonionic surfactant (Decyl Glucoside) at low temperature"
+      ],
+      "expected_shelf_life_behavior": "At ambient storage, viscosity and clarity should remain acceptable over 12 weeks with minor drift. Accelerated and freeze–thaw conditions may induce reversible viscosity loss or transient haze.",
+      "risk_level": "Medium",
+      "confidence_level": "Medium",
+      "launch_decision": "Proceed with Mitigations"
+    },
+    "stability_risk_assessment": {
+      "thermal_sensitivity": [
+        "Viscosity decrease at 45°C due to weakened structuring"
+      ],
+      "ph_sensitivity": [
+        "pH drift may reduce preservative efficiency and viscosity"
+      ],
+      "electrolyte_sensitivity": [
+        "Narrow NaCl window critical for viscosity stability"
+      ]
+    },
+    "packaging_compatibility": {
+      "material_compatibility": [
+        "PETG compatible with surfactant system"
+      ],
+      "oxygen_water_barrier": [
+        "Adequate for rinse-off cleanser"
+      ]
+    }
+  }
+}

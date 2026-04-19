@@ -629,6 +629,7 @@ def agent2_chat(request):
         return JsonResponse({"error": "Field 'message' is required."}, status=400)
 
     history = payload.get("history", [])
+    context = str(payload.get("context", "")).strip()
     if not isinstance(history, list):
         history = []
 
@@ -641,14 +642,14 @@ def agent2_chat(request):
 
     try:
         agent2 = _agent2_instance()
-        result = agent2.invoke({"input": build_agent2_input(message, history)})
+        result = agent2.invoke({"input": build_agent2_input(message, history, context or None)})
         reply = str(result.get("output", "")).strip()
         tools = _tools_from_agent2_steps(result)
     except Exception:
         # If any tool path fails, gracefully degrade to a direct concise model reply.
         fallback_used = True
         try:
-            reply = run_agent2_fallback(message, history)
+            reply = run_agent2_fallback(message, history, context or None)
         except Exception as exc:
             return JsonResponse({"error": f"Agent2 chat failed: {exc}"}, status=500)
 
