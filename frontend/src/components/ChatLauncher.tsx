@@ -1,34 +1,13 @@
-import { useState, useCallback, useEffect, lazy, Suspense } from "react";
+import { useState, useCallback, lazy, Suspense } from "react";
 import { MessageCircle } from "lucide-react";
 import type { ChatMessage } from "@/types/api";
 
 const ChatPanel = lazy(() => import("./ChatPanel"));
 
-const CHAT_STORAGE_KEY = "stability-rheology-chat-history";
-
 export default function ChatLauncher() {
   const [open, setOpen] = useState(false);
   const [unread, setUnread] = useState(0);
-  const [messages, setMessages] = useState<ChatMessage[]>(() => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    try {
-      const stored = window.localStorage.getItem(CHAT_STORAGE_KEY);
-      return stored ? (JSON.parse(stored) as ChatMessage[]) : [];
-    } catch {
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
-    } catch {
-      // Ignore storage failures and keep the in-memory conversation alive.
-    }
-  }, [messages]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const handleNewReply = useCallback(() => {
     if (!open) setUnread((n) => n + 1);
