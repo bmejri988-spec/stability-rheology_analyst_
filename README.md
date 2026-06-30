@@ -156,14 +156,3 @@ For live runs, start backend first and pass base URL where required.
 ## Sample Input
 
 Use `stability_sample.json` and `models/formula_schema.py` as references for valid payload shape and constraints.
-
-## Security Notes
-
-- Do not commit real API keys or tokens.
-- Rotate any credential that was ever exposed in logs, screenshots, or shared snippets.
-- Keep production secrets in secure secret managers where possible.
-
-## License
-
-Add your license here (for example: MIT).
-
